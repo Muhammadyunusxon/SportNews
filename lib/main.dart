@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Pages/Onboarding.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,8 +10,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Container(),
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: OnBoardingPage(),
     );
   }
 }
