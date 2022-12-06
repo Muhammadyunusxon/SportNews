@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sportnews/Pages/WatchPage.dart';
 
 import 'Model.dart';
 
@@ -134,6 +135,7 @@ class _HomePageState extends State<HomePage> {
           ),
           Expanded(
             child: ListView(
+              physics: BouncingScrollPhysics(),
               children: [
                 const Padding(
                   padding: EdgeInsets.only(left: 25, right: 107),
@@ -533,185 +535,190 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.symmetric(horizontal: 22),
                       itemCount: 2,
                       itemBuilder: (context, index) {
-                        return Container(
-                          margin: const EdgeInsets.only(bottom: 12),
-                          padding: const EdgeInsets.all(10),
-                          height: 126,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(18),
-                            color: Colors.white.withOpacity(0.07),
-                          ),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                  height: 106,
-                                  width: 80,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(12),
-                                    child: Image.asset(
-                                      discountData[index].image,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  )),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 7, bottom: 7, left: 12),
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Text(
-                                            discountData[index].play,
-                                            style: const TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w400,
-                                                color: Colors.white),
-                                          ),
-                                          const Spacer(),
-                                          Container(
-                                            height: 30,
-                                            width: 30,
-                                            padding: const EdgeInsets.all(3),
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: Colors.white
-                                                  .withOpacity(0.02),
-                                            ),
-                                            child: Center(
-                                              child: Icon(
-                                                Icons.bookmark_border,
-                                                color: Colors.white
-                                                    .withOpacity(0.2),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
+                        return GestureDetector(
+                          onTap: (){
+                            Navigator.of(context).push(MaterialPageRoute(builder: (_)=> WatchPage(data: discountData[index]),));
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.only(bottom: 12),
+                            padding: const EdgeInsets.all(10),
+                            height: 126,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(18),
+                              color: Colors.white.withOpacity(0.07),
+                            ),
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                    height: 106,
+                                    width: 80,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(12),
+                                      child: Image.asset(
+                                        discountData[index].image,
+                                        fit: BoxFit.cover,
                                       ),
-                                      const SizedBox(
-                                        height: 2,
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            height: 16,
-                                            width: 16,
-                                            child: Image.asset(
-                                                "images/Location.png"),
-                                          ),
-                                          const SizedBox(
-                                            width: 5,
-                                          ),
-                                          Text(
-                                            discountData[index].location,
-                                            style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w300,
-                                              color:
-                                                  Colors.white.withOpacity(0.5),
-                                            ),
-                                          ),
-                                          const Spacer(),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 3,
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            height: 16,
-                                            width: 16,
-                                            child:
-                                                Image.asset("images/Time.png"),
-                                          ),
-                                          const SizedBox(
-                                            width: 5,
-                                          ),
-                                          Text(
-                                            "Available time: ",
-                                            style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w300,
-                                              color:
-                                                  Colors.white.withOpacity(0.5),
-                                            ),
-                                          ),
-                                          const Spacer(),
-                                          Text(
-                                            discountData[index].time,
-                                            style: const TextStyle(
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 12,
-                                              color: Color(0xff62C5ED),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 6,
-                                      ),
-                                      Row(
-                                        children: [
-                                          const Icon(
-                                            Icons.star,
-                                            color: Color(0xffF3E18F),
-                                            size: 18,
-                                          ),
-                                          const SizedBox(
-                                            width: 4,
-                                          ),
-                                          Text(
-                                            discountData[index].rate.toString(),
-                                            style: const TextStyle(
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 12,
-                                              color: Color(0xffF3E18F),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 12,
-                                          ),
-                                          Text(
-                                            "\$${discountData[index].price}",
-                                            style: const TextStyle(
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 16,
-                                              color: Color(0xffF3E18F),
-                                            ),
-                                          ),
-                                          const Spacer(),
-                                          Container(
-                                            margin: const EdgeInsets.only(
-                                                right: 10),
-                                            padding: const EdgeInsets.all(2),
-                                            decoration: BoxDecoration(
-                                              color: const Color(0xff62C5ED),
-                                              borderRadius:
-                                                  BorderRadius.circular(3),
-                                            ),
-                                            child: Text(
-                                              discountData[index].distance,
+                                    )),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 7, bottom: 7, left: 12),
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              discountData[index].play,
                                               style: const TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 12,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Colors.white),
+                                            ),
+                                            const Spacer(),
+                                            Container(
+                                              height: 30,
+                                              width: 30,
+                                              padding: const EdgeInsets.all(3),
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Colors.white
+                                                    .withOpacity(0.02),
+                                              ),
+                                              child: Center(
+                                                child: Icon(
+                                                  Icons.bookmark_border,
+                                                  color: Colors.white
+                                                      .withOpacity(0.2),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 2,
+                                        ),
+                                        Row(
+                                          children: [
+                                            SizedBox(
+                                              height: 16,
+                                              width: 16,
+                                              child: Image.asset(
+                                                  "images/Location.png"),
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                              discountData[index].location,
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w300,
+                                                color:
+                                                    Colors.white.withOpacity(0.5),
+                                              ),
+                                            ),
+                                            const Spacer(),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 3,
+                                        ),
+                                        Row(
+                                          children: [
+                                            SizedBox(
+                                              height: 16,
+                                              width: 16,
+                                              child:
+                                                  Image.asset("images/Time.png"),
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                              "Available time: ",
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w300,
+                                                color:
+                                                    Colors.white.withOpacity(0.5),
+                                              ),
+                                            ),
+                                            const Spacer(),
+                                            Text(
+                                              discountData[index].time,
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12,
+                                                color: Color(0xff62C5ED),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 6,
+                                        ),
+                                        Row(
+                                          children: [
+                                            const Icon(
+                                              Icons.star,
+                                              color: Color(0xffF3E18F),
+                                              size: 18,
+                                            ),
+                                            const SizedBox(
+                                              width: 4,
+                                            ),
+                                            Text(
+                                              discountData[index].rate.toString(),
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12,
+                                                color: Color(0xffF3E18F),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              width: 12,
+                                            ),
+                                            Text(
+                                              "\$${discountData[index].price}",
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 16,
+                                                color: Color(0xffF3E18F),
+                                              ),
+                                            ),
+                                            const Spacer(),
+                                            Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 10),
+                                              padding: const EdgeInsets.all(2),
+                                              decoration: BoxDecoration(
+                                                color: const Color(0xff62C5ED),
+                                                borderRadius:
+                                                    BorderRadius.circular(3),
+                                              ),
+                                              child: Text(
+                                                discountData[index].distance,
+                                                style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 12,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         );
                       }),
@@ -794,185 +801,190 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.symmetric(horizontal: 22),
                       itemCount: 2,
                       itemBuilder: (context, index) {
-                        return Container(
-                          margin: const EdgeInsets.only(bottom: 12),
-                          padding: const EdgeInsets.all(10),
-                          height: 126,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(18),
-                            color: Colors.white.withOpacity(0.07),
-                          ),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                  height: 106,
-                                  width: 80,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(12),
-                                    child: Image.asset(
-                                      discountData[index].image,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  )),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 7, bottom: 7, left: 12),
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Text(
-                                            discountData[index].stadiumName,
-                                            style: const TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w400,
-                                                color: Colors.white),
-                                          ),
-                                          const Spacer(),
-                                          Container(
-                                            height: 30,
-                                            width: 30,
-                                            padding: const EdgeInsets.all(3),
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: Colors.white
-                                                  .withOpacity(0.04),
-                                            ),
-                                            child: Center(
-                                              child: Icon(
-                                                Icons.bookmark,
-                                                color: Colors.white
-                                                    .withOpacity(0.8),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
+                        return InkWell(
+                          onTap: (){
+                            Navigator.of(context).push(MaterialPageRoute(builder: (contex)=>WatchPage(data: discountData[index],),),);
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.only(bottom: 12),
+                            padding: const EdgeInsets.all(10),
+                            height: 126,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(18),
+                              color: Colors.white.withOpacity(0.07),
+                            ),
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                    height: 106,
+                                    width: 80,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(12),
+                                      child: Image.asset(
+                                        discountData[index].image,
+                                        fit: BoxFit.cover,
                                       ),
-                                      const SizedBox(
-                                        height: 2,
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            height: 16,
-                                            width: 16,
-                                            child: Image.asset(
-                                                "images/Location.png"),
-                                          ),
-                                          const SizedBox(
-                                            width: 5,
-                                          ),
-                                          Text(
-                                            discountData[index].location,
-                                            style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w300,
-                                              color:
-                                                  Colors.white.withOpacity(0.5),
-                                            ),
-                                          ),
-                                          const Spacer(),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 3,
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            height: 16,
-                                            width: 16,
-                                            child:
-                                                Image.asset("images/Time.png"),
-                                          ),
-                                          const SizedBox(
-                                            width: 5,
-                                          ),
-                                          Text(
-                                            "Available time: ",
-                                            style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w300,
-                                              color:
-                                                  Colors.white.withOpacity(0.5),
-                                            ),
-                                          ),
-                                          const Spacer(),
-                                          Text(
-                                            discountData[index].time,
-                                            style: const TextStyle(
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 12,
-                                              color: Color(0xff62C5ED),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 6,
-                                      ),
-                                      Row(
-                                        children: [
-                                          const Icon(
-                                            Icons.star,
-                                            color: Color(0xffF3E18F),
-                                            size: 18,
-                                          ),
-                                          const SizedBox(
-                                            width: 4,
-                                          ),
-                                          Text(
-                                            discountData[index].rate.toString(),
-                                            style: const TextStyle(
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 12,
-                                              color: Color(0xffF3E18F),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 12,
-                                          ),
-                                          Text(
-                                            "\$${discountData[index].price}",
-                                            style: const TextStyle(
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 16,
-                                              color: Color(0xffF3E18F),
-                                            ),
-                                          ),
-                                          const Spacer(),
-                                          Container(
-                                            margin: const EdgeInsets.only(
-                                                right: 10),
-                                            padding: const EdgeInsets.all(2),
-                                            decoration: BoxDecoration(
-                                              color: const Color(0xff62C5ED),
-                                              borderRadius:
-                                                  BorderRadius.circular(3),
-                                            ),
-                                            child: Text(
-                                              discountData[index].distance,
+                                    )),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 7, bottom: 7, left: 12),
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              discountData[index].stadiumName,
                                               style: const TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 12,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Colors.white),
+                                            ),
+                                            const Spacer(),
+                                            Container(
+                                              height: 30,
+                                              width: 30,
+                                              padding: const EdgeInsets.all(3),
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Colors.white
+                                                    .withOpacity(0.04),
+                                              ),
+                                              child: Center(
+                                                child: Icon(
+                                                  Icons.bookmark,
+                                                  color: Colors.white
+                                                      .withOpacity(0.8),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 2,
+                                        ),
+                                        Row(
+                                          children: [
+                                            SizedBox(
+                                              height: 16,
+                                              width: 16,
+                                              child: Image.asset(
+                                                  "images/Location.png"),
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                              discountData[index].location,
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w300,
+                                                color:
+                                                    Colors.white.withOpacity(0.5),
+                                              ),
+                                            ),
+                                            const Spacer(),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 3,
+                                        ),
+                                        Row(
+                                          children: [
+                                            SizedBox(
+                                              height: 16,
+                                              width: 16,
+                                              child:
+                                                  Image.asset("images/Time.png"),
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                              "Available time: ",
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w300,
+                                                color:
+                                                    Colors.white.withOpacity(0.5),
+                                              ),
+                                            ),
+                                            const Spacer(),
+                                            Text(
+                                              discountData[index].time,
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12,
+                                                color: Color(0xff62C5ED),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 6,
+                                        ),
+                                        Row(
+                                          children: [
+                                            const Icon(
+                                              Icons.star,
+                                              color: Color(0xffF3E18F),
+                                              size: 18,
+                                            ),
+                                            const SizedBox(
+                                              width: 4,
+                                            ),
+                                            Text(
+                                              discountData[index].rate.toString(),
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12,
+                                                color: Color(0xffF3E18F),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              width: 12,
+                                            ),
+                                            Text(
+                                              "\$${discountData[index].price}",
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 16,
+                                                color: Color(0xffF3E18F),
+                                              ),
+                                            ),
+                                            const Spacer(),
+                                            Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 10),
+                                              padding: const EdgeInsets.all(2),
+                                              decoration: BoxDecoration(
+                                                color: const Color(0xff62C5ED),
+                                                borderRadius:
+                                                    BorderRadius.circular(3),
+                                              ),
+                                              child: Text(
+                                                discountData[index].distance,
+                                                style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 12,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         );
                       }),
